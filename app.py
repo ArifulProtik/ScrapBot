@@ -5,14 +5,14 @@ app = Flask(__name__)
 
 @app.route('/webhook')
 
-def verifyToken(req):
-    if req.args.get("hub.verify_token") == "jerry":
-        return req.arhs.get("hub.challenge")
+def verifyToken():
+    if request.args.get("hub.verify_token") == "jerry":
+        return request.args.get("hub.challenge")
     else:
         "Didnt match"
 def listenAndServe():
     if request.method == 'GET':
-        return verifyToken(request)
+        return verifyToken()
 
 
 
