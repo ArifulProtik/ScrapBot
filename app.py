@@ -3,17 +3,16 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/webhook',methods=['GET'])
-def webhook():
-    if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
-        if request.args.get("hub.verify_token") == "jerrymamo":
-            return "Matched", 200
-        else:
-            return "Did not Mathed", 403
+@app.route('/webhook')
+
+def verifyToken(req):
+    if req.args.get("hub.verify_token") == "jerry":
+        return req.arhs.get("hub.challenge")
     else:
-        return "Not Requested For Webhook", 200
-
-
+        "Didnt match"
+def listenAndServe():
+    if request.method == 'GET':
+        return verifyToken(request)
 
 
 
